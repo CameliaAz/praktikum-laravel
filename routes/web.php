@@ -6,6 +6,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/category/food-beverage', [ProductController::class, 'foodBeverage']);
