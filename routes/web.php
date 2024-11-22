@@ -1,23 +1,19 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SalesController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index']);
 
-Route::get('/category/food-beverage', [ProductController::class, 'foodBeverage']);
-Route::get('/category/beauty-health', [ProductController::class, 'beautyHealth']);
-Route::get('/category/home-care', [ProductController::class, 'homeCare']);
-Route::get('/category/baby-kid', [ProductController::class, 'babyKid']);
-
-
-Route::get('/user/{id}/name/{name}', [UserController::class, 'show']);
-
-Route::get('/sales', [SalesController::class, 'index']);
-
-
-
+Route::group(['prefix' => 'user'], function () { // menampilkan halaman awal user
+    Route::get('/', [UserController::class, 'index']); // menampilkan data user dalam bentuk json untuk datatables
+    Route::post('/list', [UserController::class, 'list']); // menampilkan data user dalam bentuk json untuk datatables
+    Route::get('/create', [UserController::class, 'create']); // menampilkan halaman form tambah user
+    Route::post('/', [UserController::class, 'store']); // menyimpan data user baru
+    Route::get('/{id}', [UserController::class, 'show']); // menampilkan detail user
+    Route::get('/{id}/edit', [UserController::class, 'edit']); // menampilkan halaman form edit user
+    Route::put('/{id}', [UserController::class, 'update']); // menyimpan perubahan data user
+    Route::delete('/{id}', [UserController::class, 'destroy']); // menghapus data user
+});
