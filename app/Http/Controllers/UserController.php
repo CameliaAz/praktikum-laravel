@@ -17,15 +17,17 @@ class UserController extends Controller
     public function index()
     {
         // tambah data user dengan Eloquement Model
-    $data = [
-        'level_id'=> 2,
-        'username'=> 'manager_tiga',
-        'nama'=> 'Manager 3',
-        'password'=> Hash::make('12345'),
-    ];
-    UserModel::create($data); //membuat data
+    // $data = [
+    //     'level_id'=> 2,
+    //     'username'=> 'manager_tiga',
+    //     'nama'=> 'Manager 3',
+    //     'password'=> Hash::make('12345'),
+    // ];
+    // UserModel::create($data); //membuat data
 
-    $user = UserModel::all();
+    $user = UserModel::findOr(20,['username', 'nama'], function (){
+        abort(404);
+    });
     return view('user', ['data' => $user]);
 
     //     $breadcrumb = (object)[
