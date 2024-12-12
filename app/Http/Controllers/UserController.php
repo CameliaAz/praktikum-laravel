@@ -17,63 +17,63 @@ class UserController extends Controller
     public function index()
     {
         // tambah data user dengan Eloquement Model
-    // $data = [
-    //     'level_id'=> 2,
-    //     'username'=> 'manager_tiga',
-    //     'nama'=> 'Manager 3',
-    //     'password'=> Hash::make('12345'),
-    // ];
-    // UserModel::create($data); //membuat data
+        // $data = [
+        //     'level_id'=> 2,
+        //     'username'=> 'manager_tiga',
+        //     'nama'=> 'Manager 3',
+        //     'password'=> Hash::make('12345'),
+        // ];
+        // UserModel::create($data); //membuat data
 
-    $user = UserModel::where('username', 'manager9')->firstOrFail();
-    return view('user', ['data' => $user]);
+        $user = UserModel::where('level_id', 2)->count();
+        return view('user', ['data' => $user]);
 
-    //     $breadcrumb = (object)[
-    //         'title' => 'Daftar User',
-    //         'list' => ['Home', 'User']
-    //     ];
+        //     $breadcrumb = (object)[
+        //         'title' => 'Daftar User',
+        //         'list' => ['Home', 'User']
+        //     ];
 
-    //     $page = (object) [
-    //         'title' => 'Daftar user ynag terdaftar dalam sistem'
-    //     ];
+        //     $page = (object) [
+        //         'title' => 'Daftar user ynag terdaftar dalam sistem'
+        //     ];
 
-    //     $activeMenu = 'user'; //set menu yang sedang aktif
+        //     $activeMenu = 'user'; //set menu yang sedang aktif
 
-    //     return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
-    // }
-    // // Ambil data user dalam bentuk json untuk datatables
-    
-    // public function list(Request $request)
-    // {
-    //     $users = UserModel::select('user_id', 'username', 'nama', 'level_id')->with('level');
+        //     return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        // }
+        // // Ambil data user dalam bentuk json untuk datatables
 
-    //     if ($request->level_id) {
-    //         $users->where('level_id', $request->level_id);
-    //     }
+        // public function list(Request $request)
+        // {
+        //     $users = UserModel::select('user_id', 'username', 'nama', 'level_id')->with('level');
 
-    //     return DataTables::of($users)
-    //         ->addIndexColumn() // Menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
-    //         ->addColumn('aksi', function ($user) { // Menambahkan kolom aksi
-    //             $btn = '<a href="' . url('/user/' . $user->user_id) . '" class="btn btn-info btn-sm">Detail</a> ';
-    //             $btn .= '<a href="' . url('/user/' . $user->user_id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-    //             $btn .= '<form class="d-inline-block" method="POST" action="' . url('/user/' . $user->user_id) . '">'
-    //                 . csrf_field() . method_field('DELETE') .
-    //                 '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
+        //     if ($request->level_id) {
+        //         $users->where('level_id', $request->level_id);
+        //     }
 
-    //             return $btn;
-    //         })
-    //         ->rawColumns(['aksi']) // Memberitahu bahwa kolom aksi adalah HTML
-    //         ->make(true);
+        //     return DataTables::of($users)
+        //         ->addIndexColumn() // Menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
+        //         ->addColumn('aksi', function ($user) { // Menambahkan kolom aksi
+        //             $btn = '<a href="' . url('/user/' . $user->user_id) . '" class="btn btn-info btn-sm">Detail</a> ';
+        //             $btn .= '<a href="' . url('/user/' . $user->user_id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+        //             $btn .= '<form class="d-inline-block" method="POST" action="' . url('/user/' . $user->user_id) . '">'
+        //                 . csrf_field() . method_field('DELETE') .
+        //                 '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
 
-    
-    // $data = [
-    //     'username'=> 'Pelanggan Pertama'
-    // ];
-    // // UserModel::insert($data); //tambahkan data ke table m_user
-    // UserModel::where('username','customer-1')->update($data); //update data user
+        //             return $btn;
+        //         })
+        //         ->rawColumns(['aksi']) // Memberitahu bahwa kolom aksi adalah HTML
+        //         ->make(true);
 
-    // //coba akses user model
-    // $user = UserModel::all(); //ambil semua data dari m_user
-    // return view ('user', ['data' => $user]);
+
+        // $data = [
+        //     'username'=> 'Pelanggan Pertama'
+        // ];
+        // // UserModel::insert($data); //tambahkan data ke table m_user
+        // UserModel::where('username','customer-1')->update($data); //update data user
+
+        // //coba akses user model
+        // $user = UserModel::all(); //ambil semua data dari m_user
+        // return view ('user', ['data' => $user]);
     }
 }
