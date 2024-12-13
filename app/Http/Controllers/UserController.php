@@ -25,7 +25,7 @@ class UserController extends Controller
         // ];
         // UserModel::create($data); //membuat data
 
-        $user = UserModel::all();
+        $user = UserModel::with('level')->get();
         return view('user', ['data' => $user]);
          
         // $user->username = 'manager11';
